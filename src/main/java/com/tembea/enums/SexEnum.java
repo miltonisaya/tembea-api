@@ -1,6 +1,5 @@
 package com.tembea.enums;
 
-public enum UserTypeEnum {
-  TRAVELLER,
-    OPERATOR
+public enum SexEnum {
+  MALE, FEMALE
 }

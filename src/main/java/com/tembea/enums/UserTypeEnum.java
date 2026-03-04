@@ -1,4 +1,6 @@
 package com.tembea.enums;
 
-public class UserTypeEnum {
+public enum UserTypeEnum {
+  TRAVELLER,
+    OPERATOR
 }
