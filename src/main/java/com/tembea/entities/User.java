@@ -6,7 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
-public class User {
+public class User extends BaseEntity {
 
   @Column(name = "first_name")
   private String firstName;
