@@ -3,9 +3,21 @@ package com.tembea.entities;
 import com.tembea.enums.SexEnum;
 import com.tembea.enums.UserTypeEnum;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Entity(name = "User")
+@Table(name = "users")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User extends BaseEntity {
 
   @Column(name = "first_name")
