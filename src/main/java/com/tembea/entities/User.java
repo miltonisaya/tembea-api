@@ -1,5 +1,6 @@
 package com.tembea.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tembea.enums.SexEnum;
 import com.tembea.enums.UserTypeEnum;
 import jakarta.persistence.Column;
@@ -29,6 +30,9 @@ public class User extends BaseEntity {
   @Column(name = "last_name")
   private String lastName;
 
+  @Column(name = "email")
+  private String email;
+
   @Column(name = "mobile")
   private String mobile;
 
@@ -39,4 +43,8 @@ public class User extends BaseEntity {
   @Column(name = "user_type")
   @Enumerated(EnumType.STRING)
   private UserTypeEnum userType;
+
+  @Column(name = "password")
+  @JsonIgnore
+  private String password;
 }
