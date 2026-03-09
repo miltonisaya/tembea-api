@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '4.0.3'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.flywaydb.flyway' version '11.14.1'
 }
 
 group = 'com.tembea'
@@ -33,6 +34,16 @@ dependencies {
     // Source: https://mvnrepository.com/artifact/org.projectlombok/lombok
     implementation("org.projectlombok:lombok:1.18.42")
     annotationProcessor("org.projectlombok:lombok:1.18.42")
+}
+
+def appProps = new Properties()
+file('src/main/resources/application.properties').withInputStream { appProps.load(it) }
+
+flyway {
+	url = appProps['spring.datasource.url']
+	user = appProps['spring.datasource.username']
+	password = appProps['spring.datasource.password']
+	locations = ['classpath:db/migration']
 }
 
 tasks.named('test') {

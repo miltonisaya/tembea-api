@@ -8,8 +8,6 @@ CREATE TABLE users
     mobile      VARCHAR(255)          NULL,
     sex         VARCHAR(255)          NULL,
     user_type   VARCHAR(255)          NULL,
-    email       VARCHAR(255)          NULL,
-    password    VARCHAR(255)          NULL,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );
 

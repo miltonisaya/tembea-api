@@ -54,9 +54,10 @@ public class UserController {
       @ApiResponse(responseCode = "201", description = "User created successfully"),
       @ApiResponse(responseCode = "400", description = "Invalid request body")
   })
-  @PostMapping
+  @PostMapping("/register")
   public CustomApiResponse create(@Valid @RequestBody UserRequestDto dto) {
-    return CustomApiResponse.created(messageService.get(MessageKey.USER_CREATED), userService.create(dto));
+    return CustomApiResponse.created(messageService.get(MessageKey.USER_CREATED),
+        userService.create(dto));
   }
 
   @Operation(summary = "Update an existing user")
@@ -69,7 +70,8 @@ public class UserController {
   public CustomApiResponse update(
       @Parameter(description = "User UUID") @PathVariable String uuid,
       @Valid @RequestBody UserRequestDto dto) {
-    return CustomApiResponse.ok(messageService.get(MessageKey.USER_UPDATED), userService.update(uuid, dto));
+    return CustomApiResponse.ok(messageService.get(MessageKey.USER_UPDATED),
+        userService.update(uuid, dto));
   }
 
   @Operation(summary = "Delete a user")
