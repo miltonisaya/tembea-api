@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     user.setEmail(dto.getEmail());
     user.setMobile(dto.getMobile());
     user.setSex(dto.getSex());
-    user.setUserType(dto.getUserType());
+    user.setUserType(dto.getAccountType());
     user.setPassword(dto.getPassword());
 
     return new UserResponseDto(userRepository.save(user));
@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     user.setEmail(dto.getEmail());
     user.setMobile(dto.getMobile());
     user.setSex(dto.getSex());
-    user.setUserType(dto.getUserType());
+    user.setUserType(dto.getAccountType());
     user.setPassword(dto.getPassword());
     return user;
   }

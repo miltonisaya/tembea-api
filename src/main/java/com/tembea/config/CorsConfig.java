@@ -1,29 +1,37 @@
 package com.tembea.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import org.jspecify.annotations.NonNull;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
-@Configuration
-public class CorsConfig {
+@Component
+@Order(Ordered.HIGHEST_PRECEDENCE)
+public class CorsConfig extends OncePerRequestFilter {
 
-  @Bean
-  @Order(Ordered.HIGHEST_PRECEDENCE)
-  public CorsFilter corsFilter() {
-    CorsConfiguration config = new CorsConfiguration();
-    config.addAllowedOriginPattern("*");
-    config.addAllowedHeader("*");
-    config.addAllowedMethod("*");
-    config.setAllowCredentials(false);
-    config.setMaxAge(3600L);
+  @Override
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+      @NonNull FilterChain filterChain) throws ServletException, IOException {
+    String origin = request.getHeader("Origin");
+    response.setHeader("Access-Control-Allow-Origin", origin != null ? origin : "*");
+    response.setHeader("Access-Control-Allow-Credentials", "true");
+    response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+    response.setHeader("Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    response.setHeader("Access-Control-Max-Age", "3600");
+    response.setHeader("Vary", "Origin");
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", config);
+    if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+      response.setStatus(HttpServletResponse.SC_OK);
+      return;
+    }
 
-    return new CorsFilter(source);
+    filterChain.doFilter(request, response);
   }
 }

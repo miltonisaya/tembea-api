@@ -43,6 +43,7 @@ public class UserController {
       @ApiResponse(responseCode = "200", description = "User found"),
       @ApiResponse(responseCode = "404", description = "User not found")
   })
+
   @GetMapping("/{uuid}")
   public CustomApiResponse findByUuid(
       @Parameter(description = "User UUID") @PathVariable String uuid) {
@@ -66,6 +67,7 @@ public class UserController {
       @ApiResponse(responseCode = "400", description = "Invalid request body"),
       @ApiResponse(responseCode = "404", description = "User not found")
   })
+
   @PutMapping("/{uuid}")
   public CustomApiResponse update(
       @Parameter(description = "User UUID") @PathVariable String uuid,
@@ -79,6 +81,7 @@ public class UserController {
       @ApiResponse(responseCode = "200", description = "User deleted successfully"),
       @ApiResponse(responseCode = "404", description = "User not found")
   })
+  
   @DeleteMapping("/{uuid}")
   public CustomApiResponse delete(
       @Parameter(description = "User UUID") @PathVariable String uuid) {

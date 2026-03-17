@@ -36,9 +36,13 @@ public class UserRequestDto {
   private SexEnum sex;
 
   @NotNull(message = "{validation.userType.required}")
-  private UserTypeEnum userType;
+  private UserTypeEnum accountType;
 
   @NotBlank(message = "{validation.password.required}")
   @Size(min = 8, message = "{validation.password.size}")
   private String password;
+
+  @NotBlank(message = "{validation.password.required}")
+  @Size(min = 8, message = "{validation.password.size}")
+  private String confirmPassword;
 }
